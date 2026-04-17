@@ -1,0 +1,394 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #EFF6FF;
+    --card: #ffffff;
+    --blue: #2563EB;
+    --blue-light: #DBEAFE;
+    --blue-mid: #93C5FD;
+    --text: #111827;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    --divider: #E5E7EB;
+    --red: #DC2626;
+    --red-light: #FEE2E2;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(37, 99, 235, 0.08), 0 20px 48px rgba(37, 99, 235, 0.06);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    background: var(--bg);
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+main {
+    width: 100%;
+    max-width: 480px;
+}
+
+/*  CARD  */
+[data-testid="test-profile-card"] {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--blue-light);
+    animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*  TOP ROW  */
+.profile-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    animation: rise 0.5s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/*  AVATAR  */
+.avatar-wrap {
+    flex-shrink: 0;
+    position: relative;
+}
+
+.avatar-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+    z-index: 0;
+}
+
+[data-testid="test-user-avatar"] {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: var(--blue-light);
+    position: relative;
+    z-index: 1;
+    border: 3px solid var(--card);
+}
+
+/*  IDENTITY  */
+.identity {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-top: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+[data-testid="test-user-name"] {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.role {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 0.01em;
+}
+
+/*  SOCIAL LINKS  */
+.social-links {
+    list-style: none;
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.18s ease, transform 0.18s ease;
+}
+
+/* Per-brand hover colors */
+.social-links a.social-x:hover {
+    color: #000000;
+}
+
+.social-links a.social-github:hover {
+    color: #24292e;
+}
+
+.social-links a.social-linkedin:hover {
+    color: var(--blue);
+}
+
+.social-links a:hover {
+    transform: translateY(-2px);
+}
+
+.social-links a:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/*  BIO COLLAPSIBLE  */
+.bio-wrap {
+    margin-bottom: 1rem;
+    animation: rise 0.5s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.bio {
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    transition: all 0.3s ease;
+}
+
+.bio.expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+}
+
+.bio-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 4px;
+    cursor: pointer;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--blue);
+    letter-spacing: 0.01em;
+    transition: opacity 0.15s ease;
+}
+
+.bio-toggle:hover {
+    opacity: 0.75;
+}
+
+.bio-toggle:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
+/*  DIVIDER  */
+.divider {
+    border: none;
+    border-top: 1px solid var(--divider);
+    margin: 1rem 0;
+}
+
+/*  LISTS ROW  */
+.lists-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    animation: rise 0.5s 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.list-label {
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.tag-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tag-list li {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--blue);
+    background: var(--blue-light);
+    padding: 4px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    width: fit-content;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tag-list.dislikes li {
+    color: var(--red);
+    background: var(--red-light);
+}
+
+/*  EPOCH TIME  */
+.time-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    animation: rise 0.5s 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.time-label {
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+[data-testid="test-user-time"] {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    text-align: right;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*  320px — no outer margin, card fills screen  */
+@media (max-width: 360px) {
+    body {
+        padding: 0;
+        align-items: flex-start;
+    }
+
+    main {
+        max-width: 100%;
+    }
+
+    [data-testid="test-profile-card"] {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        padding: 1.25rem 1rem;
+        box-shadow: none;
+    }
+
+    [data-testid="test-user-name"] {
+        font-size: 15px;
+    }
+
+    [data-testid="test-user-avatar"] {
+        width: 64px;
+        height: 64px;
+    }
+
+    .bio {
+        font-size: 11.5px;
+    }
+
+    .tag-list li {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+
+    [data-testid="test-user-time"] {
+        font-size: 10px;
+    }
+
+    .lists-row {
+        gap: 0.75rem;
+    }
+}
+
+/*  361–480px  */
+@media (min-width: 361px) and (max-width: 480px) {
+    body {
+        padding: 1rem 0.75rem;
+        align-items: flex-start;
+    }
+
+    [data-testid="test-profile-card"] {
+        border-radius: 14px;
+        padding: 1.25rem;
+    }
+
+    [data-testid="test-user-name"] {
+        font-size: 16px;
+    }
+
+    [data-testid="test-user-avatar"] {
+        width: 72px;
+        height: 72px;
+    }
+
+    .bio {
+        font-size: 12px;
+    }
+}
+
+/*  481–768px  */
+@media (min-width: 481px) and (max-width: 768px) {
+    body {
+        padding: 1.5rem 1.25rem;
+    }
+}
+
+/*  769px–1024px  */
+@media (min-width: 769px) {
+    body {
+        padding: 3rem 2rem;
+    }
+
+    main {
+        max-width: 500px;
+    }
+
+    [data-testid="test-user-name"] {
+        font-size: 20px;
+    }
+
+    [data-testid="test-user-avatar"] {
+        width: 88px;
+        height: 88px;
+    }
+
+    .bio {
+        font-size: 13px;
+    }
+}
