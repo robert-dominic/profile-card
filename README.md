@@ -64,7 +64,7 @@ open index.html
 
 ## Live Demo
 
-[https://robert-dominic.github.io/profile-card/](#) — replace with your live URL
+[https://robert-dominic.github.io/profile-card/](#) 
 
 ## Submission
 
